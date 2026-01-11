@@ -1,0 +1,27 @@
+name: C Program Build and Run
+
+on:
+  push:
+    branches:
+      - main # Or your default branch name
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up GCC compiler
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # GCC is typically pre-installed on ubuntu-latest runners, this step ensures common build environment
+
+    - name: Compile the C program
+      run: |
+        gcc 1_PATTERN_C/PATT_1.C -o 1_PATTERN_C/PATT_1_executable
+
+    - name: Run the compiled program
+      run: |
+        ./1_PATTERN_C/PATT_1_executable
